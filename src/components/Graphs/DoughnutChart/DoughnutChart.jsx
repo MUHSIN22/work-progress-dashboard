@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactECharts from 'echarts-for-react'
 
-export default function DoughnutChart({data=[], name='', seriesName=''}) {
+export default function DoughnutChart({data=[], name='', seriesName='',color}) {
 const option = {
     title:{
         text: name,
@@ -35,7 +35,7 @@ const option = {
           show: false
         },
         data,
-        color: ['red','blue','green']
+        color
       },
     ],
   };

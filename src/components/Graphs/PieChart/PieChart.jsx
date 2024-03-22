@@ -1,35 +1,38 @@
 import React from 'react'
 import ReactECharts from 'echarts-for-react'
 
-export default function PieChart({data=[], seriesName=''}) {
-    const option = {
-        xAxis: {
-          type: 'category',
-          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+export default function PieChart({data=[], seriesName='', color}) {
+const option = {
+    tooltip: {
+      trigger: 'item'
+    },
+    legend: {
+      show: false
+    },
+    series: [
+      {
+        name: seriesName,
+        type: 'pie',
+        avoidLabelOverlap: false,
+        label: {
+          show: false,
+          position: 'center'
         },
-        yAxis: {
-          type: 'value'
-        },
-        tooltip: {
-          show: true
-        },
-        series: [
-          {
-            data: [820, 932, 901, 934, 1290, 1330, 1320],
-            type: 'line',
-            smooth: true,
-            symbol: '',
-            symbolSize: '8',
-            itemStyle: {
-              color: 'red'
-            },
-            lineStyle: {
-              color: '#5470C6',
-              width: 3
-            },
+        emphasis: {
+          label: {
+            show: false,
+            fontSize: 15,
+            fontWeight: 'bold'
           }
-        ]
-      };
+        },
+        labelLine: {
+          show: false
+        },
+        data,
+        color
+      },
+    ],
+  };
   return (
     <ReactECharts option={option} style={{maxHeight: '15rem'}} opts={{theme: {textStyle: {fontFamily: 'Euclid'}}}} />
   )
