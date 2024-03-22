@@ -6,8 +6,12 @@ import SprintPredictionCard from '../../components/Cards/SprintPredictionCard/Sp
 import EstimationComparisonCard from '../../components/Cards/EstimationComparisonCard/EstimationComparisonCard'
 import PerformanceCard from '../../components/Cards/PerformanceCard/PerformanceCard'
 import useFetch from '../../hooks/useFetch/useFetch'
+<<<<<<< HEAD
 import { useParams } from 'react-router-dom'
 import { usersNames } from '../../utils/contants/contants'
+=======
+import PerformanceTable from '../../components/Cards/PerfomanceTable/PerfomanceTable'
+>>>>>>> 9f74416c56210d622a218196a03fefc7272db87a
 
 
 export default function Individual() {
@@ -50,6 +54,7 @@ export default function Individual() {
           </Grid>
 
           <Grid templateColumns='repeat(2,1fr)' gap='1rem' w='100%'>
+            <PerformanceTable heading={'Perfomance Table'} data={data?.sprint} />
             <PerformanceCard />
           </Grid>
         </>
