@@ -14,14 +14,15 @@ const formatEstimationSummary = (data) => {
         // console.log("over est")
         estData?.overestimate.forEach(item => {
             sprints.push(item.sprintName)
-            overest.push(item.deviation.toFixed(2))
+            let value = item.deviation ? item.deviation.toFixed(2) : 0 
+            overest.push(value)
         })
 
         // console.log("under est")
         estData?.underestimate.forEach(item => {
             // console.log(item)
-            let value = 0 - item.deviation
-            underest.push(value.toFixed(2));
+            let value = item.deviation ?  0 - item.deviation.toFixed(2) : 0
+            underest.push(value);
         })
 
         return {sprints, underest, overest};
