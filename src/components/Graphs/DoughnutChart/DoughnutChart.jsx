@@ -40,6 +40,6 @@ const option = {
     ],
   };
   return (
-    <ReactECharts option={option} opts={{theme: {textStyle: {fontFamily: 'Euclid'}}}} />
+    <ReactECharts option={option} style={{maxHeight: '15rem'}} opts={{theme: {textStyle: {fontFamily: 'Euclid'}}}} />
   )
 }
