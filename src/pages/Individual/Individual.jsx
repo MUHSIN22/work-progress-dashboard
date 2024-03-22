@@ -32,7 +32,6 @@ export default function Individual() {
   },[id])
 
 
-
   return (
     <VStack gap='1rem' w='100%'>
       {
