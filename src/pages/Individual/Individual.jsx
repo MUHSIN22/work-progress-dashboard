@@ -15,9 +15,11 @@ import EstimationSummaryCard from '../../components/Cards/EstimationSummaryCard/
 export default function Individual() {
   const {id} = useParams();
   const [url, setUrl] = useState(`userdashboard/get?projectKey=${usersNames[id]}&userid=${id}`)
+  console.log({url})
   const [filter,setFilter] = useState(null)
 
   const {data,loading,error} = useFetch(url)
+  console.log({data})
   
   useEffect(() => {
     if(filter){
@@ -26,9 +28,10 @@ export default function Individual() {
   },[filter])
 
   useEffect(() => {
-
     setUrl(`userdashboard/get?projectKey=${usersNames[id]}&userid=${id}`)
   },[id])
+
+
 
   return (
     <VStack gap='1rem' w='100%'>
@@ -60,7 +63,7 @@ export default function Individual() {
           </Grid>
 
           <Grid templateColumns='repeat(2,1fr)' gap='1rem' w='100%'>
-            <EstimationSummaryCard/>
+            <EstimationSummaryCard data={data}/>
             <PerformanceCard />
           </Grid>
 
