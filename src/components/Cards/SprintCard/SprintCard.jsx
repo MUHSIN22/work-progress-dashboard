@@ -5,27 +5,31 @@ import { Box, HStack, Text } from '@chakra-ui/react'
 
 export default function SprintCard({title, data}) {
     const [sanitizedData, setSanitizedData] = useState([]);
-    
-    useEffect(() => {
 
+    useEffect(() => {
+        if(data){
+            setSanitizedData([
+                {
+                    name: 'Done',
+                    value: data?.done
+                },
+                {
+                    name: 'In Progress',
+                    value: 10
+                },
+                {
+                    name: 'Backlog',
+                    value: 20
+                }
+            ])
+        }
     },[data])
+
+    console.log(sanitizedData,data);
   return (
     <CardPrimary heading={title}>
         <Box pos='relative'>
-          <DoughnutChart seriesName='Status' name='Sprint 12' data={[
-            {
-             name: 'In Progress',
-             value: 10
-            },
-            {
-              name: 'Backlog',
-              value: 5,
-            },
-            {
-              name: 'Done',
-              value: 10,
-            }
-          ]} />
+          <DoughnutChart seriesName='Status' color={['#00CC66','#99CCFF',' #FFCC99']} name={data?.name} data={sanitizedData} />
           <HStack justifyContent='flex-end' pos='absolute' bottom={0} right={0}>
             <Box w='0.5rem' h='0.5rem' borderRadius='50%' bg='semantic.success'></Box>
             <Text>Current Sprint</Text>
