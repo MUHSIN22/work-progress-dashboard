@@ -46,7 +46,7 @@ export default function Individual() {
         <>
           <HStack w='100%' justifyContent='space-between'>
             <Heading>{names?.[id]}'s View</Heading>
-            <Select bg='white' w='max-content' onChange={e => setFilter(e.target.value)}>
+            <Select bg='white' w='max-content' value={filter} onChange={e => setFilter(e.target.value)}>
               <option value={null}>Current Sprint</option>
               <option value={2}>Last 2 Sprints</option>
               <option value={3}>Last 3 Sprints</option>
