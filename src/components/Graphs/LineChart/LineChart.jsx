@@ -1,35 +1,54 @@
 import React from 'react'
 import ReactECharts from 'echarts-for-react'
 
-export default function LineChart({data=[], seriesName=''}) {
+export default function LineChart({data}) {
 const option = {
-    xAxis: {
-      type: 'category',
-      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-    },
-    yAxis: {
-      type: 'value'
-    },
-    tooltip: {
-      show: true
-    },
-    series: [
-      {
-        data: [820, 932, 901, 934, 1290, 1330, 1320],
-        type: 'line',
-        smooth: true,
-        symbol: '',
-        symbolSize: '8',
-        itemStyle: {
-          color: 'red'
-        },
+  series: [
+    {
+      type: 'gauge',
+      progress: {
+        show: true,
+        width: 18
+      },
+      axisLine: {
         lineStyle: {
-          color: '#5470C6',
-          width: 3
-        },
-      }
-    ]
-  };
+          width: 10
+        }
+      },
+      axisTick: {
+        show: false
+      },
+      splitLine: {
+        length: 15,
+        lineStyle: {
+          width: 2,
+          color: '#999'
+        }
+      },
+      anchor: {
+        show: true,
+        showAbove: true,
+        size: 15,
+        itemStyle: {
+          borderWidth: 10
+        }
+      },
+      title: {
+        show: false
+      },
+      detail: {
+        valueAnimation: true,
+        fontSize: 30,
+        offsetCenter: [0, '70%']
+      },
+      data: [
+        {
+          value: data
+        }
+      ]
+    }
+  ]
+};
   return (
     <ReactECharts option={option} opts={{theme: {textStyle: {fontFamily: 'Euclid'}}}} />
   )

@@ -56,14 +56,14 @@ export default function Individual() {
           </HStack>
           <Grid templateColumns='repeat(4,1fr)' gap='1rem' w='100%'>
             <SprintCard title='Sprint Progress' data={data?.data?.sprint} />
-            <SprintPredictionCard />
+            <SprintPredictionCard data={data?.data?.sprintPrediction}/>
             <EstimationComparisonCard data={data?.data?.EstimateTotal} />
             <TimeCard  data={data?.data?.Estimation}/>
           </Grid>
 
           <Grid templateColumns='repeat(2,1fr)' gap='1rem' w='100%'>
             <EstimationSummaryCard data={data}/>
-            <PerformanceCard />
+            <PerformanceCard data={data?.data?.performanceMatrix}/>
           </Grid>
 
           <Grid gap='1rem' w='100%' h='20rem'>

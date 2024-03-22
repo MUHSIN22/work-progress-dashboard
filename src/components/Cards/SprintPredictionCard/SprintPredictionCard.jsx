@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import CardPrimary from '../CardPrimary/CardPrimary'
 import { HStack, Progress, Text, VStack } from '@chakra-ui/react'
 import { getPercentageValue } from '../../../utils/commonUtils/commonUtils'
@@ -25,7 +25,34 @@ const sprintPrediction = {
   }
   
 
-export default function SprintPredictionCard() {
+export default function SprintPredictionCard(data) {
+  const [sanitizedData,setSanitizedData] = useState({})
+
+  useEffect(() => {
+    if(data){
+      setSanitizedData({
+        total: data?.totalTasks,
+        data: [
+          {
+            title: 'Completion',
+            count: data?.done,
+            color: 'green'
+          },
+          {
+            title: 'In Progress',
+            count: data?.others,
+            color: 'orange'
+          },
+          {
+            title: 'Backlog',
+            count: data?.backlog,
+            color: 'red'
+          }
+        ]
+      }
+      )
+    }
+  },[data])
   return (
     <CardPrimary heading='Sprint Prediction'>
         <VStack h='100%' justifyContent='space-around'>
