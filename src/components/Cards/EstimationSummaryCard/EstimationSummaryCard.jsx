@@ -14,14 +14,15 @@ const formatEstimationSummary = (data) => {
         // console.log("over est")
         estData?.overestimate.forEach(item => {
             sprints.push(item.sprintName)
-            overest.push(item.deviation)
+            let value = item.deviation ? item.deviation.toFixed(2) : 0 
+            overest.push(value)
         })
 
         // console.log("under est")
         estData?.underestimate.forEach(item => {
             // console.log(item)
-            let value = 0 - item.deviation
-            underest.push(value.toFixed(2));
+            let value = item.deviation ?  0 - item.deviation.toFixed(2) : 0
+            underest.push(value);
         })
 
         return {sprints, underest, overest};
@@ -64,7 +65,7 @@ export default function EstimationSummaryCard({data}) {
                 axisTick: {
                   show: false
                 },
-                data: formattedData != null ? formattedData.sprints : ["test1"]
+                data: formattedData != null ? formattedData.sprints : []
               }
             ],
             series: [
@@ -78,7 +79,7 @@ export default function EstimationSummaryCard({data}) {
                   emphasis: {
                     focus: 'series'
                   },
-                  data:  formattedData != null ? formattedData.overest :  [320]
+                  data:  formattedData != null ? formattedData.overest :  []
                 },
                 {
                   name: 'Under estimate',
@@ -91,7 +92,7 @@ export default function EstimationSummaryCard({data}) {
                   emphasis: {
                     focus: 'series'
                   },
-                  data: formattedData != null ? formattedData.underest : [-120]
+                  data: formattedData != null ? formattedData.underest : []
                 }
               ]
         };
