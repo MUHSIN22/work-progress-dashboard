@@ -13,13 +13,18 @@ export const sidebarData = [
         type: 'accordion',
         title: 'Projects',
         icon: FaLayerGroup,
-        childIcon: 'icon'
+        childIcon: 'icon',
+        childKey: 'projects',
+        childTextKey: 'projectName',
+        linkPrefix: '/project'
     },
     {
         type: 'accordion',
         title: 'Team Members',
         icon: GrGroup,
         childIcon: 'img',
-        childKey: 'users'
+        childKey: 'users',
+        childTextKey: 'displayName',
+        linkPrefix: '/individual'
     }
 ]

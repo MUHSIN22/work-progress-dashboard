@@ -5,18 +5,25 @@ import { RxDashboard } from "react-icons/rx";
 import { FaLayerGroup } from "react-icons/fa";
 import { sidebarData } from './sidebar.data';
 import useFetch from '../../hooks/useFetch/useFetch';
+import HG from '../../assets/icons/security.png'
+import BIDE from '../../assets/icons/build.png'
+import { useNavigate } from 'react-router-dom';
 
+const projectIcons = {
+  HG,
+  BIDE
+}
 
 export default function Sidebar() {
+  const navigate = useNavigate();
   const {data,error,loading} = useFetch('projectTeam/get')
 
   const [sanitizedData, setSanitizedData] = useState({})
 
   useEffect(() => {
-    console.log(data);
     if(data){
       const users = data.data.users.filter(item => item.active && item.accountType === 'atlassian' && !["Ziddik Kader","Sudhir Kunnath","Arun Alex"].includes(item.displayName));
-      setSanitizedData({users})
+      setSanitizedData({users, projects: data.data.projectsWithUsers})
     }
   },[data])
 
@@ -39,7 +46,7 @@ export default function Sidebar() {
                   : item.type === 'accordion' ?
                     <Accordion allowToggle w='100%'>
                       <AccordionItem border='none' w='100%' pl={0}>
-                        
+
                         <AccordionButton pl={0} py={0} _hover={{ bg: 'brand.50' }}>
                           <HStack w='100%' p='1rem' cursor='pointer' transition='all 0.3s ease-in-out' _hover={{ bg: 'brand.50' }} py='0.5rem'>
                             <Icon as={item.icon} fontSize='1.5rem' />
@@ -53,11 +60,11 @@ export default function Sidebar() {
                           <VStack w='100%'>
                             {
                               sanitizedData?.[item.childKey]?.map((childItem) => (
-                                <HStack w='100%' p='1rem' cursor='pointer' transition='all 0.3s ease-in-out' _hover={{ bg: 'brand.50' }} py='0.5rem'>
+                                <HStack w='100%' p='1rem' cursor='pointer' transition='all 0.3s ease-in-out' onClick={() => navigate(`${item.linkPrefix}/${childItem?.projectKey || childItem?.accountId}`) } _hover={{ bg: 'brand.50' }} py='0.5rem'>
                                   {item.childIcon === 'img' ? 
                                     <Avatar src={childItem?.avatarUrl?.['16x16']} size='xs' name={childItem.displayName}/>
-                                  :<RxDashboard fontSize='1.3rem' />}
-                                  <Text variant='strong' fontSize='0.9rem' pointerEvents='none'>Dashboard</Text>
+                                  :<Avatar src={projectIcons[childItem.projectKey]} size='xs' name={childItem.displayName}/>}
+                                  <Text variant='strong' fontSize='0.9rem' pointerEvents='none'>{childItem[item.childTextKey]}</Text>
                                 </HStack>
                               ))
                             }
