@@ -25,9 +25,10 @@ export default function Individual() {
   },[filter])
 
   useEffect(() => {
-
     setUrl(`userdashboard/get?projectKey=${usersNames[id]}&userid=${id}`)
   },[id])
+
+  console.log(loading);
 
   return (
     <VStack gap='1rem' w='100%'>

@@ -7,6 +7,7 @@ const useFetch = (url) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    setLoading(true)
     const fetchData = async () => {
       try {
         const {data} = await axiosInstance.get(url)
