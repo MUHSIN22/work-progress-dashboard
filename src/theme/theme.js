@@ -3,7 +3,7 @@ import { extendTheme } from "@chakra-ui/react";
 export const customTheme = extendTheme({
     colors:{
         brand: {
-            50: "#3744bd",
+            50: "#ebedf9",
             100: "#c4c8ee",
             200: "#9ca3e2",
             300: "#757ed7",
@@ -30,7 +30,16 @@ export const customTheme = extendTheme({
         Heading: {
             variants: {
                 cardHeading:{
-                    fontSize: '1.2rem'
+                    fontSize: '1.2rem',
+                    fontWeight: 600
+                }
+            }
+        },
+        Text:{
+            variants:{
+                strong: {
+                    fontSize: '1rem',
+                    fontWeight: '600'
                 }
             }
         }
