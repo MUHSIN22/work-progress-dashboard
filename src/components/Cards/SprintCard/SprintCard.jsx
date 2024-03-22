@@ -15,11 +15,11 @@ export default function SprintCard({title, data}) {
                 },
                 {
                     name: 'In Progress',
-                    value: 10
+                    value: data?.inprogress
                 },
                 {
                     name: 'Backlog',
-                    value: 20
+                    value: data?.backlog
                 }
             ])
         }
@@ -29,7 +29,7 @@ export default function SprintCard({title, data}) {
   return (
     <CardPrimary heading={title}>
         <Box pos='relative'>
-          <DoughnutChart seriesName='Status' color={['#00CC66','#99CCFF',' #FFCC99']} name={data?.name} data={sanitizedData} />
+          <DoughnutChart seriesName='Status' color={['#66FF66','#99CCFF',' #FFCC99']} name={data?.name} data={sanitizedData} />
           <HStack justifyContent='flex-end' pos='absolute' bottom={0} right={0}>
             <Box w='0.5rem' h='0.5rem' borderRadius='50%' bg='semantic.success'></Box>
             <Text>Current Sprint</Text>

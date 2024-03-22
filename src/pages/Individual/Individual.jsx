@@ -1,4 +1,4 @@
-import { CircularProgress, Grid, HStack, Select, VStack } from '@chakra-ui/react'
+import { CircularProgress, Grid, HStack, Heading, Select, Text, VStack } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import SprintCard from '../../components/Cards/SprintCard/SprintCard'
 import TimeCard from '../../components/Cards/TimeCard/TimeCard'
@@ -7,7 +7,7 @@ import EstimationComparisonCard from '../../components/Cards/EstimationCompariso
 import PerformanceCard from '../../components/Cards/PerformanceCard/PerformanceCard'
 import useFetch from '../../hooks/useFetch/useFetch'
 import { useParams } from 'react-router-dom'
-import { usersNames } from '../../utils/contants/contants'
+import { names, usersNames } from '../../utils/contants/contants'
 import PerformanceTable from '../../components/Cards/PerfomanceTable/PerfomanceTable'
 
 
@@ -17,12 +17,17 @@ export default function Individual() {
   const [filter,setFilter] = useState(null)
 
   const {data,loading,error} = useFetch(url)
-
+  
   useEffect(() => {
     if(filter){
       setUrl(`userdashboard/get?projectKey=${usersNames[id]}&userid=${id}&filter=${filter}`)
     }
   },[filter])
+
+  useEffect(() => {
+
+    setUrl(`userdashboard/get?projectKey=${usersNames[id]}&userid=${id}`)
+  },[id])
 
   return (
     <VStack gap='1rem' w='100%'>
@@ -30,12 +35,15 @@ export default function Individual() {
         loading ? 
         <HStack>
           <CircularProgress isIndeterminate/>
-          <Text />
+          <Text>
+            Please wait a while, We are loading the data
+          </Text>
         </HStack>
         :
         <>
-          <HStack w='100%' justifyContent='flex-end'>
-          <Select bg='white' w='max-content' onChange={e => setFilter(e.target.value)}>
+          <HStack w='100%' justifyContent='space-between'>
+            <Heading>{names?.[id]}'s View</Heading>
+            <Select bg='white' w='max-content' onChange={e => setFilter(e.target.value)}>
               <option value={null}>Current Sprint</option>
               <option value={2}>Last 2 Sprints</option>
               <option value={3}>Last 3 Sprints</option>
