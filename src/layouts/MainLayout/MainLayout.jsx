@@ -8,7 +8,7 @@ export default function MainLayout() {
   return (
     <Grid bg='fade.white' minH='100vh' templateColumns='15rem auto'>
       <Sidebar />
-      <Center alignItems='flex-start' p='2rem'>
+      <Center alignItems='flex-start' p='5rem'>
         <Outlet />
       </Center>
     </Grid>

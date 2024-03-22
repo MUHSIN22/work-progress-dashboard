@@ -8,7 +8,7 @@ export default function CustomTable({tableData, tableHeadings, userClick}) {
   }
 
   return (
-    <Grid  style={{width: '100%', height: '100%', overflowY: 'hidden'}}>
+    <Grid  style={{width: '100%', height: '14rem', overflowY: 'hidden'}}>
       <TableContainer style={{width: '100%', height: '100%', overflowY: 'scroll'}}>
           <Table variant='striped'>
             <Thead> 
