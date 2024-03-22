@@ -31,7 +31,7 @@ export default function SprintPredictionCard(data) {
   useEffect(() => {
     if(data){
       setSanitizedData({
-        total: data?.totalTasks,
+        total: data?.data?.totalTasks,
         data: [
           {
             title: 'Completion',
@@ -53,6 +53,9 @@ export default function SprintPredictionCard(data) {
       )
     }
   },[data])
+
+
+  console.log(sanitizedData,data,'sanitized');
   return (
     <CardPrimary heading='Sprint Prediction'>
         <VStack h='100%' justifyContent='space-around'>
@@ -62,7 +65,7 @@ export default function SprintPredictionCard(data) {
                 <Text variant='strong'>{item.title}</Text>
                 <HStack w='100%'>
                   <Progress value={getPercentageValue(item.count, sprintPrediction.total)} colorScheme={item.color} w='100%' borderRadius='50px' />
-                  <Text>{item.count}/{sprintPrediction.total}</Text>
+                  <Text>{item.count}/{sanitizedData.total}</Text>
                 </HStack>
               </VStack>
             ))
