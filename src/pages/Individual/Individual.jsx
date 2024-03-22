@@ -1,23 +1,28 @@
-import { Box, Grid, HStack, Progress, Text, VStack } from '@chakra-ui/react'
+import { Grid, VStack } from '@chakra-ui/react'
 import React from 'react'
-import CardPrimary from '../../components/Cards/CardPrimary/CardPrimary'
-import DoughnutChart from '../../components/Graphs/DoughnutChart/DoughnutChart'
-import { getPercentageValue, splitSecondIntoHrMins } from '../../utils/commonUtils/commonUtils'
 import SprintCard from '../../components/Cards/SprintCard/SprintCard'
 import TimeCard from '../../components/Cards/TimeCard/TimeCard'
 import SprintPredictionCard from '../../components/Cards/SprintPredictionCard/SprintPredictionCard'
+import EstimationComparisonCard from '../../components/Cards/EstimationComparisonCard/EstimationComparisonCard'
+import PerformanceCard from '../../components/Cards/PerformanceCard/PerformanceCard'
+import useFetch from '../../hooks/useFetch/useFetch'
 
 
 export default function Individual() {
+  const {data,loading,error} = useFetch('userdashboard/get')
 
   return (
-    <Grid templateColumns='repeat(3,1fr)' gap='1rem' w='100%'>
-      <SprintCard title='SprintProgress'/>
+    <VStack gap='1rem' w='100%'>
+      <Grid templateColumns='repeat(4,1fr)' gap='1rem' w='100%'>
+        <SprintCard title='Sprint Progress' data={data?.sprint} />
+        <SprintPredictionCard />
+        <EstimationComparisonCard />
+        <TimeCard />
+      </Grid>
 
-     <SprintPredictionCard />
-
-      <TimeCard />
-      
-    </Grid>
+      <Grid templateColumns='repeat(2,1fr)' gap='1rem' w='100%'>
+        <PerformanceCard />
+      </Grid>
+    </VStack>
   )
 }

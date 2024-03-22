@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import CardPrimary from '../CardPrimary/CardPrimary'
 import DoughnutChart from '../../Graphs/DoughnutChart/DoughnutChart'
 import { Box, HStack, Text } from '@chakra-ui/react'
 
-export default function SprintCard({title}) {
+export default function SprintCard({title, data}) {
+    const [sanitizedData, setSanitizedData] = useState([]);
+    
+    useEffect(() => {
+
+    },[data])
   return (
     <CardPrimary heading={title}>
         <Box pos='relative'>
