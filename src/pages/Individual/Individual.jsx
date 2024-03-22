@@ -7,6 +7,7 @@ import EstimationComparisonCard from '../../components/Cards/EstimationCompariso
 import PerformanceCard from '../../components/Cards/PerformanceCard/PerformanceCard'
 import useFetch from '../../hooks/useFetch/useFetch'
 import PerformanceTable from '../../components/Cards/PerfomanceTable/PerfomanceTable'
+import EstimationSummaryCard from '../../components/Cards/EstimationSummaryCard/EstimationSummaryCard'
 
 
 export default function Individual() {
@@ -22,6 +23,7 @@ export default function Individual() {
       </Grid>
 
       <Grid templateColumns='repeat(2,1fr)' gap='1rem' w='100%'>
+        <EstimationSummaryCard/>
         <PerformanceCard />
       </Grid>
 
