@@ -1,10 +1,10 @@
 import React from 'react'
 import ReactECharts from 'echarts-for-react'
 
-export default function DoughnutChart({data, name, seriesName}) {
+export default function DoughnutChart({data=[], name='', seriesName=''}) {
 const option = {
     title:{
-        text: 'Sprint 12',
+        text: name,
         left: 'center',
         top: 'center'
     },
@@ -16,7 +16,7 @@ const option = {
     },
     series: [
       {
-        name: 'Access From',
+        name: seriesName,
         type: 'pie',
         radius: ['40%', '70%'],
         avoidLabelOverlap: false,
@@ -34,13 +34,8 @@ const option = {
         labelLine: {
           show: false
         },
-        data: [
-          { value: 1048, name: 'Search Engine' },
-          { value: 735, name: 'Direct' },
-          { value: 580, name: 'Email' },
-          { value: 484, name: 'Union Ads' },
-          { value: 300, name: 'Video Ads' }
-        ]
+        data,
+        color: ['red','blue','green']
       },
     ],
   };
