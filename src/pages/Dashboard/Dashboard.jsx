@@ -3,6 +3,7 @@ import CardPrimary from '../../components/Cards/CardPrimary/CardPrimary'
 import { Grid, Heading, VStack } from '@chakra-ui/react'
 import {Table,Thead,Tbody,Tfoot,Tr,Th,Td,TableCaption,TableContainer} from '@chakra-ui/react'
 import useFetch from '../../hooks/useFetch/useFetch'
+import CustomTable from '../../components/Table/CustomTable'
 
 export default function Dashboard() {
 
@@ -43,6 +44,14 @@ export default function Dashboard() {
     ]
   }
 
+  const userTableHeading = ["Name", "Points"]
+
+  const handlerUserOnlick = (userDetails) => {
+    console.log({userDetails})
+    console.log("user clicked")
+    window.history.pushState({}, "", `/individual/${userDetails.name}`)
+  }
+
 
   return (
     <VStack width={'100%'} >
@@ -80,34 +89,7 @@ export default function Dashboard() {
 
             {/* leader board */}
             <CardPrimary heading={"Leader board"}>
-                <Grid  style={{width: '100%', height: '100%', overflowY: 'hidden'}}>
-                  <TableContainer style={{width: '100%', height: '100%', overflowY: 'scroll'}}>
-                      <Table variant='striped'>
-                        <Thead>
-                          <Tr >
-                            <Th>Name</Th>
-                            <Th style={{textAlign: 'left'}} isNumeric>Points</Th>
-                          </Tr>
-                        </Thead>
-                        <Tbody>
-                        {
-                          (data != undefined &&  data.leaderBoard) ? (
-                            data.leaderBoard.map(item => (
-                              <Tr >
-                                <Td  style={{paddingTop: '4px', paddingBottom: '4px' , textTransform: 'capitalize'}}>{item.name}</Td>
-                                <Td  style={{paddingTop: '4px', paddingBottom: '4px'  }}>{item.point}</Td>
-                              </Tr>
-                            ))
-                          ) : (
-                                <Tr>
-                                  No data to show
-                                </Tr>
-                              )
-                        }
-                        </Tbody>
-                      </Table>
-                  </TableContainer>
-                </Grid>
+                <CustomTable tableHeadings={userTableHeading} tableData={data != undefined ? data.leaderBoard : null} userClick={handlerUserOnlick} />
             </CardPrimary>
       </Grid>
       
