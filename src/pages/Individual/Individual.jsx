@@ -9,14 +9,17 @@ import useFetch from '../../hooks/useFetch/useFetch'
 import { useParams } from 'react-router-dom'
 import { names, usersNames } from '../../utils/contants/contants'
 import PerformanceTable from '../../components/Cards/PerfomanceTable/PerfomanceTable'
+import EstimationSummaryCard from '../../components/Cards/EstimationSummaryCard/EstimationSummaryCard'
 
 
 export default function Individual() {
   const {id} = useParams();
   const [url, setUrl] = useState(`userdashboard/get?projectKey=${usersNames[id]}&userid=${id}`)
+  console.log({url})
   const [filter,setFilter] = useState(null)
 
   const {data,loading,error} = useFetch(url)
+  console.log({data})
   
   useEffect(() => {
     if(filter){
@@ -28,7 +31,6 @@ export default function Individual() {
     setUrl(`userdashboard/get?projectKey=${usersNames[id]}&userid=${id}`)
   },[id])
 
-  console.log(loading);
 
   return (
     <VStack gap='1rem' w='100%'>
@@ -60,9 +62,14 @@ export default function Individual() {
           </Grid>
 
           <Grid templateColumns='repeat(2,1fr)' gap='1rem' w='100%'>
-            <PerformanceTable heading={'Perfomance Table'} data={data?.sprint} />
+            <EstimationSummaryCard data={data}/>
             <PerformanceCard />
           </Grid>
+
+          <Grid gap='1rem' w='100%' h='20rem'>
+            <PerformanceTable heading={'Perfomance Table'} data={data?.sprint} />
+          </Grid>
+
         </>
       }
     </VStack>
