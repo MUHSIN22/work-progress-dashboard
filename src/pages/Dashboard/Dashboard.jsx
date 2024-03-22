@@ -1,8 +1,15 @@
 import React from 'react'
 import CardPrimary from '../../components/Cards/CardPrimary/CardPrimary'
 import { Grid, Heading, VStack } from '@chakra-ui/react'
+import useFetch from '../../hooks/useFetch/useFetch'
 
 export default function Dashboard() {
+
+  const {data, loading, error} = useFetch("/trackApp/dashboardDetails/get");
+  console.log({data})
+  console.log({loading})
+  console.log({error})
+
   const testData = [
     {
       title: "team 1",
