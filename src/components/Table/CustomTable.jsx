@@ -7,6 +7,21 @@ export default function CustomTable({tableData, tableHeadings, userClick}) {
     if(userClick!= undefined) userClick(item)
   }
 
+  const formatColumnContent = (item, itemKey) => {
+    let style = {paddingTop: '4px', paddingBottom: '4px', fontSize:'14px'  }
+    if(itemKey == "name"){
+      style.textTransform = 'capitalize'
+    } 
+
+    if(itemKey == "status"){
+        if(item[itemKey] == "Done"){
+          style.color = "green"
+        }
+    }
+
+    return  <Td style={style}>{item[itemKey]}</Td> 
+  }
+
   return (
     <Grid  style={{width: '100%', height: '14rem', overflowY: 'hidden'}}>
       <TableContainer style={{width: '100%', height: '100%', overflowY: 'scroll'}}>
@@ -23,13 +38,16 @@ export default function CustomTable({tableData, tableHeadings, userClick}) {
               (tableData != undefined) ? (
                 tableData.map(item => (
                   <Tr >
-                    <Td onClick={() => handleUserClick(item)}  style={{cursor:'pointer', paddingTop: '4px', paddingBottom: '4px' , textTransform: 'capitalize'}}>{item.name}</Td>
-                    <Td  style={{paddingTop: '4px', paddingBottom: '4px'  }}>{item.point}</Td>
+                    {
+                      Object.keys(item).map(itemKey => {
+                        return formatColumnContent(item, itemKey)
+                      })
+                    }
                   </Tr>
                 ))
               ) : (
                     <Tr>
-                      No data to show
+                      <Td >No data to show</Td>
                     </Tr>
                   )
             }

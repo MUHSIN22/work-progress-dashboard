@@ -6,6 +6,7 @@ import SprintPredictionCard from '../../components/Cards/SprintPredictionCard/Sp
 import EstimationComparisonCard from '../../components/Cards/EstimationComparisonCard/EstimationComparisonCard'
 import PerformanceCard from '../../components/Cards/PerformanceCard/PerformanceCard'
 import useFetch from '../../hooks/useFetch/useFetch'
+import PerformanceTable from '../../components/Cards/PerfomanceTable/PerfomanceTable'
 
 
 export default function Individual() {
@@ -22,6 +23,10 @@ export default function Individual() {
 
       <Grid templateColumns='repeat(2,1fr)' gap='1rem' w='100%'>
         <PerformanceCard />
+      </Grid>
+
+      <Grid gap='1rem' w='100%' h='20rem'>
+        <PerformanceTable heading={'Perfomance Table'} data={data?.sprint} />
       </Grid>
     </VStack>
   )
